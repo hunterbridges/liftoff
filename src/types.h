@@ -14,3 +14,6 @@ typedef int32_t fixed16x16;
 typedef void(*State)();
 #define STATE_RUN(S) if (S) S()
 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+

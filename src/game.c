@@ -23,7 +23,13 @@ static void State_Init()
 {
 	// TODO: Game init?
 
+	/*
 	game.state = State_Title;
+	*/
+
+	coreGame.Init();
+	game.state = State_Play;
+
 	STATE_RUN(game.state);
 }
 
@@ -62,11 +68,25 @@ static void State_Play()
 {
 	coreGame.Update();
 	coreGame.Draw();
+
+	if (coreGame.dead == 1)
+	{
+		game.state = State_Death;
+	}
 }
 
 static void State_Death()
 {
+	coreGame.Draw();
 
+	pd->graphics->setFont(font);
+	pd->graphics->drawText("RIP U", strlen("RIP U"), kASCIIEncoding, x, y);
+
+	if (input.buttonPress & kButtonA)
+	{
+		game.state = State_Title;
+		timer = 0;
+	}
 }
 
 static void State_HighScores()

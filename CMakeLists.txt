@@ -30,10 +30,12 @@ set(PLAYDATE_GAME_DEVICE liftoff_DEVICE)
 
 project(${PLAYDATE_GAME_NAME} C ASM)
 
+FILE(GLOB MyCSources src/*.c)
 if (TOOLCHAIN STREQUAL "armgcc")
-	add_executable(${PLAYDATE_GAME_DEVICE} ${SDK}/C_API/buildsupport/setup.c src/main.c)
+ 	SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} --specs=nosys.specs")
+	add_executable(${PLAYDATE_GAME_DEVICE} ${SDK}/C_API/buildsupport/setup.c ${MyCSources})
 else()
-	add_library(${PLAYDATE_GAME_NAME} SHARED src/main.c )
+	add_library(${PLAYDATE_GAME_NAME} SHARED ${MyCSources})
 endif()
 
 include(${SDK}/C_API/buildsupport/playdate_game.cmake)
