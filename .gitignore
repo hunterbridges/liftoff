@@ -1,4 +1,11 @@
-build/
+build/.sentry-native
+build/.vs
+build/CMakeFiles
+build/Debug
+build/Release
+build/x64
+build/*.dir
+build/CMakeCache.txt
 *.pdx
 pdex.dll
 pdex.bin
